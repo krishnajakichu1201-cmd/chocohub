@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ChocoHub - Chocolate Boutique</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background: #60433c;
+    color: #2c211d;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.topbar {
+    height: 23px;
+    background: #80594e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8%;
+    font-size: 8px;
+}
+
+.toplinks {
+    display: flex;
+    gap: 24px;
+}
+
+header {
+    height: 64px;
+    background: #faf8f7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8%;
+}
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+nav {
+    display: flex;
+    gap: 27px;
+}
+
+nav a {
+    font-size: 9px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.hero {
+    height: 305px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+
+    background:
+        linear-gradient(#2d1713a6, #2d1713a6),
+        url("https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1800&q=85")
+        center / cover;
+}
+
+.hero h1 {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 40px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    background: #bd8b63;
+    color: white;
+    padding: 12px 25px;
+    font-size: 9px;
+    font-weight: bold;
+    border: none;
+    text-transform: uppercase;
+}
+
+.cart {
+    position: absolute;
+    top: 0;
+    right: 8%;
+    background: #bd8b63;
+    color: white;
+    padding: 10px 25px;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.main {
+    background: #60433c;
+    color: white;
+    padding: 0 8%;
+}
+
+.benefits {
+    position: relative;
+    margin-top: -20px;
+    margin-bottom: 15px;
+    min-height: 60px;
+    background: #faf8f7;
+    color: #3c2a25;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.benefit span:first-child {
+    font-size: 19px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 15px 0 29px;
+}
+
+.product {
+    background: #faf8f7;
+    color: #2c211d;
+    text-align: center;
+    overflow: hidden;
+}
+
+.photo {
+    height: 135px;
+    overflow: hidden;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.product:hover .photo img {
+    transform: scale(1.05);
+}
+
+.info {
+    padding: 13px 5px 14px;
+}
+
+.info h3 {
+    font-size: 8px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.add {
+    margin-top: 8px;
+    border: none;
+    background: transparent;
+    color: #92654b;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.promo {
+    height: 194px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+
+    background:
+        linear-gradient(#5b342ba8, #5b342ba8),
+        url("https://images.unsplash.com/photo-1548907040-4d42e3f9a7d5?auto=format&fit=crop&w=650&q=85")
+        center / cover;
+}
+
+.promo h2 {
+    font-size: 13px;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.promo a {
+    display: inline-block;
+    margin-top: 24px;
+    font-size: 8px;
+    text-transform: uppercase;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+}
+
+.brands {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 10px 0 28px;
+    color: #bda49a;
+    opacity: 0.75;
+}
+
+.brand {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
+
+.banner {
+    height: 125px;
+    margin: 0 -8.7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+        linear-gradient(#2c1714a3, #2c1714a3),
+        url("https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=1600&q=85")
+        center / cover;
+}
+
+.banner h2 {
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+footer {
+    background: #392722;
+    color: #e9d9d1;
+    padding: 34px 8% 0;
+}
+
+.footergrid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.15fr;
+    gap: 32px;
+    padding-bottom: 30px;
+}
+
+.footerlogo {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 21px;
+    font-weight: bold;
+    color: #c49b7d;
+    margin-bottom: 12px;
+}
+
+footer h3 {
+    font-size: 9px;
+    text-transform: uppercase;
+    margin: 5px 0 15px;
+    color: white;
+}
+
+footer p,
+footer a {
+    font-size: 8px;
+    line-height: 1.9;
+    color: #d2beb5;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom {
+    margin: 0 -9.5%;
+    padding: 12px 8%;
+    border-top: 1px solid #503932;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 8px;
+    color: #cbb8b0;
+}
+
+@media (max-width: 700px) {
+    .topbar {
+        padding: 0 5%;
+    }
+
+    header {
+        padding: 0 5%;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 7px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .main {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .photo {
+        height: 140px;
+    }
+
+    .brands {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .banner {
+        margin-left: -5.6%;
+        margin-right: -5.6%;
+    }
+
+    footer {
+        padding: 27px 5% 0;
+    }
+
+    .footergrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 23px;
+    }
+
+    .bottom {
+        margin-left: -5.6%;
+        margin-right: -5.6%;
+        padding: 12px 5%;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 390px) {
+    .photo {
+        height: 115px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <span>Message from ChocoHub</span>
+    <div class="toplinks">
+        <a href="#shop">Eng</a>
+        <a href="#shop">INR ₹</a>
+        <a href="#account" onclick="accountNotice(event)">My Account</a>
+    </div>
+</div>
+
+<header>
+    <a class="logo" href="#home">ChocoHub</a>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#bakery">Bakery</a>
+        <a href="#about">About</a>
+        <a href="#purchase">Purchase</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <a class="cart" href="#shop" onclick="showCart(event)">
+        CART (<span id="cartCount">0</span> ITEMS)
+    </a>
+
+    <div>
+        <h1>
+            We are ChocoHub<br>
+            Ideal for Every Chocoholic
+        </h1>
+
+        <a class="btn" href="#shop">See Our Offer</a>
+    </div>
+</section>
+
+<main class="main" id="shop">
+
+    <section class="benefits">
+        <div class="benefit">
+            <span>◉</span>
+            <span>Personalized Shop</span>
+        </div>
+
+        <div class="benefit">
+            <span>♟</span>
+            <span>Email Notifications</span>
+        </div>
+
+        <div class="benefit">
+            <span>◎</span>
+            <span>Worldwide Shipping</span>
+        </div>
+    </section>
+
+    <section class="grid" id="bakery">
+
+        <div class="promo">
+            <div>
+                <h2>Popular in<br>our shop</h2>
+                <a href="#products">View More</a>
+            </div>
+        </div>
+
+        <article class="product">
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=650&q=85" alt="Delicious cake">
+            </div>
+            <div class="info">
+                <h3>Delicious Cake</h3>
+                <div class="price">₹230.00</div>
+                <button class="add" onclick="addToCart('Delicious Cake',230)">Add to Cart +</button>
+            </div>
+        </article>
+
+        <article class="product">
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1548907040-4d42e3f9a7d5?auto=format&fit=crop&w=650&q=85" alt="Tasty chocolate">
+            </div>
+            <div class="info">
+                <h3>Tasty Chocolate</h3>
+                <div class="price">₹230.00</div>
+                <button class="add" onclick="addToCart('Tasty Chocolate',230)">Add to Cart +</button>
+            </div>
+        </article>
+
+        <article class="product">
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=650&q=85" alt="Chocolate cake">
+            </div>
+            <div class="info">
+                <h3>Chocolate Cake</h3>
+                <div class="price">₹230.00</div>
+                <button class="add" onclick="addToCart('Chocolate Cake',230)">Add to Cart +</button>
+            </div>
+        </article>
+
+    </section>
+
+    <div class="brands">
+        <span>‹</span>
+        <span class="brand">Milka</span>
+        <span class="brand">Chupa<br>Chups</span>
+        <span class="brand">Sugar</span>
+        <span class="brand">g</span>
+        <span class="brand">Chupa<br>Chups</span>
+        <span class="brand">Milka</span>
+        <span>›</span>
+    </div>
+
+    <section class="grid" id="products">
+
+        <article class="product">
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=650&q=85" alt="Chocolate cake">
+            </div>
+            <div class="info">
+                <h3>Chocolate Cake</h3>
+                <div class="price">₹230.00</div>
+                <button class="add" onclick="addToCart('Chocolate Cake',230)">Add to Cart +</button>
+            </div>
+        </article>
+
+        <article class="product">
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1548907040-4d42e3f9a7d5?auto=format&fit=crop&w=650&q=85" alt="Tasty chocolate">
+            </div>
+            <div class="info">
+                <h3>Tasty Chocolate</h3>
+                <div class="price">₹230.00</div>
+                <button class="add" onclick="addToCart('Tasty Chocolate',230)">Add to Cart +</button>
+            </div>
+        </article>
+
+        <article class="product">
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=650&q=85" alt="Delicious cake">
+            </div>
+            <div class="info">
+                <h3>Delicious Cake</h3>
+                <div class="price">₹230.00</div>
+                <button class="add" onclick="addToCart('Delicious Cake',230)">Add to Cart +</button>
+            </div>
+        </article>
+
+        <div class="promo">
+            <div>
+                <h2>Latest from<br>our shop</h2>
+                <a href="#products">View More</a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="banner" id="purchase">
+        <h2>Win a Sweet Surprise with ChocoHub</h2>
+    </section>
+
+</main>
+
+<footer id="about">
+
+    <div class="footergrid">
+
+        <div>
+            <div class="footerlogo">ChocoHub</div>
+            <p>ChocoHub Chocolate Boutique</p>
+            <p>Handcrafted treats, made with love.</p>
+            <p>Kerala, India</p>
+            <p>Phone: +91 00000 00000</p>
+        </div>
+
+        <div>
+            <h3>My Account</h3>
+            <div class="links">
+                <a href="#shop" onclick="showCart(event)">Cart</a>
+                <a href="#purchase">Checkout</a>
+                <a href="#account" onclick="accountNotice(event)">My Account</a>
+            </div>
+        </div>
+
+        <div>
+            <h3>Customer Care</h3>
+            <div class="links">
+                <a href="#contact">Customer Assistance</a>
+                <a href="#contact">Delivery Information</a>
+                <a href="#contact">Shipping Information</a>
+            </div>
+        </div>
+
+        <div id="contact">
+            <h3>About Us</h3>
+            <p>
+                At ChocoHub, every chocolate bite is a celebration.
+                Discover cakes, sweet treats and gifts for every special occasion.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="bottom">
+        <span>© 2026 ChocoHub. All rights reserved.</span>
+        <span>Made with ♥ and chocolate</span>
+        <span>◎ &nbsp; f &nbsp; ♡</span>
+    </div>
+
+</footer>
+
+<script>
+let cartItems = [];
+
+function addToCart(name, price) {
+    cartItems.push({name, price});
+
+    document.getElementById("cartCount").textContent = cartItems.length;
+
+    const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+
+    alert(
+        name + " added to your cart! 🍫\n" +
+        "Items: " + cartItems.length + "\n" +
+        "Total: ₹" + total +
+        "\n\nDemo only: checkout is not connected."
+    );
+}
+
+function showCart(event) {
+    if (event) event.preventDefault();
+
+    if (cartItems.length === 0) {
+        alert("Your cart is empty. Explore our chocolate treats!");
+        return;
+    }
+
+    const items = cartItems.map((item, index) =>
+        (index + 1) + ". " + item.name + " — ₹" + item.price
+    ).join("\n");
+
+    const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+
+    alert("CHOCOHUB CART\n\n" + items + "\n\nTotal: ₹" + total);
+}
+
+function accountNotice(event) {
+    event.preventDefault();
+    alert("Customer login can be connected when the full online store is developed.");
+}
+</script>
+
+</body>
+</html>
